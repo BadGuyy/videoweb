@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<c3p0-config>
+  <default-config>
+    <!--jdbc驱动类-->
+    <property name="driverClass">com.mysql.cj.jdbc.Driver</property>
+    <!--连接字符串-->
+    <property name="jdbcUrl">jdbc:mysql://localhost:3306/day26</property>
+    <!--数据库用户名-->
+    <property name="user">root</property>
+    <!--数据库的密码-->
+    <property name="password">root</property>
+    <!--初始化创建的连接数量-->
+    <property name="initialPoolSize">5</property>
+    <!--最大的连接数量-->
+    <property name="maxPoolSize">10</property>
+    <!--超时时间  ms-->
+    <property name="checkoutTimeout">1000</property>
+  </default-config>
+
+  <named-config name="videoweb">
+    <!--jdbc驱动类-->
+    <property name="driverClass">com.mysql.cj.jdbc.Driver</property>
+    <!--连接字符串-->
+    <property name="jdbcUrl">jdbc:mysql://localhost:3306/videoweb</property>
+    <!--数据库用户名-->
+    <property name="user">root</property>
+    <!--数据库的密码-->
+    <property name="password">root</property>
+    <!--初始化创建的连接数量-->
+    <property name="initialPoolSize">30</property>
+    <!--最大的连接数量-->
+    <property name="maxPoolSize">100</property>
+    <!--超时时间  ms-->
+    <property name="checkoutTimeout">1000</property>
+    <!-- 确保连接池占满后仍能提供服务 -->
+    <property name="breakAfterAcquireFailure">false</property>
+    <!-- 连接后10秒内不使用则释放连接 -->
+    <property name="maxIdleTime">10</property>
+  </named-config>
+</c3p0-config>

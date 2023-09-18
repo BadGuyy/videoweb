@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<head>
+    <title>注册</title>
+    <meta charset="UTF-8">
+	<link rel="stylesheet" href="./resources/css/universal.css">
+	<link rel="stylesheet" href="./resources/css/register.css">
+	<script>
+		function searchAccount()
+		{
+			//获取标签对象
+			var name_Account = document.getElementsByName("account")[0];
+			var showServerMsg = document.getElementById("showServerMsg");
+
+			//确保账户长度
+			if(name_Account.value.length < 8)
+			{
+				showServerMsg.style.color = "red";
+				showServerMsg.innerHTML = "账号不能少于8位";
+				return;
+			}
+			else
+				showServerMsg.innerHTML = "";
+
+			//初始化请求对象
+			var xhr = new XMLHttpRequest() || new ActiveXObject("Microsoft.XMLHTTP");
+			//发送请求
+			xhr.open("post", "searchAccount?userAccount=" + name_Account.value);
+			xhr.send();
+			//获取响应
+			xhr.onreadystatechange = function()
+			{
+				if(xhr.readyState == 4 && xhr.status == 200)
+				{
+					//接收后台结果
+					var res = xhr.responseText;
+					if(res == "null")
+					{
+						showServerMsg.style.color = "green";
+						showServerMsg.innerHTML = "该账号未被注册";
+						return;
+					}
+
+					var json = eval("(" + res + ")");
+					var userAccount = res.account;
+					showServerMsg.style.color = "red";
+					showServerMsg.innerHTML = "该账号已被注册";
+				}
+			}
+		}
+		
+		function verifyPassword()
+			{
+				//获取标签对象
+				var name_Password = document.getElementsByName("password")[0];
+				var vryPwd = document.getElementById("vryPwd");
+
+				//确保密码长度
+				if(name_Password.value.length < 8)
+				{
+					vryPwd.style.color = "red";
+					vryPwd.innerHTML = "密码不能少于8位";
+				}
+				else
+					vryPwd.innerHTML = "";
+			}
+	</script>
+</head>
+<body>
+	<div id="content">
+		<div class="box">
+			<h2>Login</h2>
+			<form>
+				<div class="input-box">
+					<label>账号</label>
+					<input type="text" name="account" onblur="searchAccount()"/>
+					<label id="showServerMsg"></label>
+				</div>
+				<div class="input-box">
+					<label>密码</label>
+					<input type="password" name="password" onblur="verifyPassword()"/>
+					<label id="vryPwd"></label>
+				</div>
+				<div class="btn-box">
+					<div>
+						<button formaction="userRegister" formmethod="post">注册</button>
+					</div>
+				</div>
+			</form>
+	</div>
+</body>
+</html>

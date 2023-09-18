@@ -1,0 +1,35 @@
+#top-bar {
+    height: 80px;
+    line-height: 80px;
+    width: 100%;
+    background-color: rgba(43, 38, 38, 0.8);
+    color:#b0b0b0;
+    font-size: 12px;
+}
+
+#search {
+    display: inline;
+    position: relative;
+    left: 691px;
+    top: -4px;
+}
+
+#search input{
+    border-radius: 5px;
+    font-size: 10px;
+    width: 250px;
+    height: 30px;
+    border: 1px solid rgba(255,255,255,0.5);
+    background: rgba(255,255,255,0.2);
+}
+
+.searchlink {
+    border: 0px;
+    width: 17px;
+    height: 17px;
+    background-color: rgba(0, 0, 0, 0);
+}
+
+.searchlink:hover {
+    cursor:pointer;
+}
